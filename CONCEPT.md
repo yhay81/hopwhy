@@ -1,8 +1,8 @@
-# HopCause concept
+# HopWhy concept
 
 ## One-line thesis
 
-HopCause diagnoses a network request from DNS through HTTP and returns the
+HopWhy diagnoses a network request from DNS through HTTP and returns the
 earliest failed phase, supporting evidence, and bounded causal hypotheses.
 
 ## Problem
@@ -40,11 +40,11 @@ explain where observed progress stopped.**
 ## Proposed command contract
 
 ```text
-hopcause schema --brief --format json
-hopcause inspect https://api.example.com/health --budget 15s --format json
-hopcause inspect --spec probe.json --format ndjson
-hopcause compare report-local.json report-ci.json --format json
-hopcause replay report.json --confirm-targets --format json
+hopwhy schema --brief --format json
+hopwhy inspect https://api.example.com/health --budget 15s --format json
+hopwhy inspect --spec probe.json --format ndjson
+hopwhy compare report-local.json report-ci.json --format json
+hopwhy replay report.json --confirm-targets --format json
 ```
 
 `inspect` performs only the probes required by the declared request and enabled
@@ -109,7 +109,7 @@ Version 0.1 will support:
 
 ## Differentiation and defensibility
 
-HopCause is not a faster `curl`. Its value is the causal report that preserves
+HopWhy is not a faster `curl`. Its value is the causal report that preserves
 layer boundaries and makes uncertainty explicit. A fixture-driven diagnosis
 corpus, portable phase model, and integrations with agent runtimes can improve
 accuracy over time.

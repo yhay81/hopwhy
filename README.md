@@ -1,15 +1,15 @@
-# HopCause
+# HopWhy
 
 Causal DNS-to-HTTP network diagnostics for humans and agents.
 
 > Status: concept stage. No diagnostic engine is implemented yet.
 
-HopCause follows a request through DNS, routing, TCP, TLS, HTTP, redirects, and the application response. It returns the first supported failure cause, the observations behind it, and the next safe diagnostic step.
+HopWhy follows a request through DNS, routing, TCP, TLS, HTTP, redirects, and the application response. It returns the first supported failure cause, the observations behind it, and the next safe diagnostic step.
 
 ```bash
-hopcause inspect https://api.example.com
-hopcause inspect https://api.example.com --phases dns,tcp,tls
-hopcause compare report_a.json report_b.json
+hopwhy inspect https://api.example.com
+hopwhy inspect https://api.example.com --phases dns,tcp,tls
+hopwhy compare report_a.json report_b.json
 ```
 
 ## Why
