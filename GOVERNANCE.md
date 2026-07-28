@@ -30,3 +30,11 @@ rationale should be recorded for consequential decisions.
 Contributor pull requests need maintainer approval. Maintainer-authored pull
 requests may be merged after required checks pass and any review feedback is
 resolved. Releases follow [RELEASING.md](RELEASING.md).
+
+## Continuity
+
+The project currently has one repository owner and one release-capable
+maintainer. [MAINTAINER_CONTINUITY.md](MAINTAINER_CONTINUITY.md) records the
+unmitigated authority risks, fail-closed signing-key rotation, and a monthly
+public recovery drill. A green drill does not substitute for a second
+maintainer or restore private repository state.
