@@ -2,6 +2,11 @@
 
 HopWhy needs evidence from real diagnostic workflows before 1.0.
 
+The shortest reporting path is the public
+[adoption report form](https://github.com/yhay81/hopwhy/issues/new?template=adoption_report.yml).
+Use a documentation pull request instead when the evidence should be committed
+directly to this file.
+
 An adopter entry may be an organization, project, or individual willing to
 describe:
 
