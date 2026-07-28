@@ -60,8 +60,8 @@ report instead of converted into claims.
 
 Direct HTTPS targets receive a separate rustls handshake using the Mozilla
 public root set. HTTPS through a proxy is marked `not_observed` as a separate
-TLS phase; the HTTP client still validates TLS with its platform verifier, but
-CONNECT and target handshake details are not split.
+TLS phase; the HTTP client still validates TLS with the same public root set,
+but CONNECT and target handshake details are not split.
 
 ## Report integrity
 
@@ -74,6 +74,6 @@ attestations.
 ## Dependency boundary
 
 HopWhy uses the standard resolver and TCP stack, rustls with Mozilla public
-roots for the independent TLS probe, and reqwest/rustls with platform trust for
-bounded HTTP/1.1/HTTP/2 requests. No native packet capture, shell command,
-process execution, unsafe Rust, or writable network configuration API is used.
+roots for both the independent TLS probe and reqwest's bounded HTTP/1.1/HTTP/2
+requests. No native packet capture, shell command, process execution, unsafe
+Rust, or writable network configuration API is used.
