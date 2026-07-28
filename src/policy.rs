@@ -324,7 +324,7 @@ fn classify_ipv6(address: Ipv6Addr) -> &'static str {
 }
 
 pub fn sha256_text(value: &str) -> String {
-    format!("{:x}", Sha256::digest(value.as_bytes()))
+    crate::hex::encode_lower(Sha256::digest(value.as_bytes()))
 }
 
 #[cfg(test)]

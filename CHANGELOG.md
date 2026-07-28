@@ -12,6 +12,9 @@ CLI and machine-contract compatibility.
 - Defined measurable v1.0 compatibility, diagnostic-accuracy, SSRF and
   redaction safety, performance, delivery, maintenance, contribution, and
   repeat-adoption gates.
+- Upgraded `sha2` to 0.11 with an explicit lowercase hexadecimal encoder that
+  preserves report, body sample, certificate, and configuration digest
+  contracts.
 
 ## [0.1.0] - 2026-07-28
 

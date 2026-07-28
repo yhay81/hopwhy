@@ -575,7 +575,7 @@ fn probe_tls(
     let certificates = tls.conn.peer_certificates().unwrap_or_default();
     let leaf_digest = certificates
         .first()
-        .map(|certificate| format!("{:x}", Sha256::digest(certificate.as_ref())));
+        .map(|certificate| crate::hex::encode_lower(Sha256::digest(certificate.as_ref())));
     let summary = TlsSummary {
         protocol: tls
             .conn
@@ -784,7 +784,7 @@ fn response_to_hop(
         body.truncate(limit);
     }
     tracker.response_bytes_read = tracker.response_bytes_read.saturating_add(body.len());
-    let digest = format!("{:x}", Sha256::digest(&body));
+    let digest = crate::hex::encode_lower(Sha256::digest(&body));
     let encoded = options
         .include_body_sample
         .then(|| base64::engine::general_purpose::STANDARD.encode(&body));
@@ -949,7 +949,7 @@ pub fn digest_serializable<T: Serialize>(value: &T) -> AppResult<String> {
             "a machine-readable document could not be serialized",
         )
     })?;
-    Ok(format!("{:x}", Sha256::digest(serialized)))
+    Ok(crate::hex::encode_lower(Sha256::digest(serialized)))
 }
 
 fn hypotheses_for(failed_at: Option<PhaseName>, phases: &[Phase]) -> Vec<Hypothesis> {
