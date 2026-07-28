@@ -14,6 +14,8 @@ CLI and machine-contract compatibility.
   and the released native binary without repository write access.
 - Added pull-request dependency review and weekly OpenSSF Scorecard analysis,
   with every action pinned to an immutable commit SHA.
+- Enabled CodeQL default setup and restricted release and dependency-audit
+  credentials to the minimum permissions required by each job.
 
 ## [0.2.0] - 2026-07-29
 
