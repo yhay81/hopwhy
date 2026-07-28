@@ -44,11 +44,32 @@ pub fn load_report(path: &Path) -> AppResult<Report> {
             format!("could not read report {}: {error}", path.display()),
         )
     })?;
-    let report: Report = serde_json::from_slice(&bytes).map_err(|error| {
+    parse_report_document_with_label(&bytes, &path.display().to_string())
+}
+
+/// Parses and verifies one bounded offline report without performing file I/O.
+///
+/// # Errors
+///
+/// Returns an error when the document is oversized, malformed, uses an
+/// unsupported schema, or fails its integrity digest.
+pub fn parse_report_document(bytes: &[u8]) -> AppResult<Report> {
+    parse_report_document_with_label(bytes, "report document")
+}
+
+fn parse_report_document_with_label(bytes: &[u8], label: &str) -> AppResult<Report> {
+    if u64::try_from(bytes.len()).unwrap_or(u64::MAX) > MAX_REPORT_BYTES {
+        return Err(AppError::new(
+            ErrorClass::Budget,
+            "report_too_large",
+            format!("report exceeds the {MAX_REPORT_BYTES} byte offline limit"),
+        ));
+    }
+    let report: Report = serde_json::from_slice(bytes).map_err(|error| {
         AppError::new(
             ErrorClass::Contract,
             "invalid_report_json",
-            format!("{} is not a HopWhy report: {error}", path.display()),
+            format!("{label} is not a HopWhy report: {error}"),
         )
     })?;
     verify_report(&report)?;
