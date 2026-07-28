@@ -87,16 +87,19 @@ The report never upgrades a hypothesis to a fact without supporting observation.
 
 ## Initial scope
 
-Version 0.1 will support:
+Version 0.1 supports:
 
-- macOS and Linux;
+- macOS, Linux, and Windows;
 - DNS over the system resolver with answer visibility where available;
 - IPv4 and IPv6 connection attempts;
-- direct and common HTTP proxy environments;
+- direct and common HTTP(S) proxy environments;
 - TCP, TLS, HTTP/1.1, and HTTP/2;
 - redirect tracing;
 - JSON comparison of two environment reports;
 - deterministic local fixture networks for regression testing.
+
+Route and interface selection remain explicitly non-observable in 0.1 rather
+than inferred from incomplete platform data.
 
 ## Non-goals
 
