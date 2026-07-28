@@ -29,7 +29,9 @@ The full documents use JSON Schema draft-07. Current top-level identifiers are:
 
 Specs are strict and reject unknown fields. Output reports remain forward
 extensible within a major schema version, but consumers should ignore unknown
-fields and branch on `schema_version`.
+fields and branch on `schema_version`. The v0.1 seal binds fields modeled by
+the v0.1 reader after deserialization; ignored extension fields are not
+integrity-protected evidence.
 
 ## Output
 
@@ -65,3 +67,8 @@ Machine errors use `hopwhy.error.v1`.
 Before 1.0, breaking changes may occur in a minor release but must receive a
 new schema version and changelog entry. Patch releases do not intentionally
 break a published schema or exit-code meaning.
+
+The digest-pinned [v0.1 report
+corpus](../tests/fixtures/contracts/README.md) freezes exact serialization and
+offline replay behavior for a representative DNS failure and declares the
+mutations that every current reader must reject.

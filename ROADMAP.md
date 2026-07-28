@@ -12,11 +12,14 @@ The roadmap is capability- and evidence-driven, not a date promise.
 
 ## 0.2 — stronger environment comparison
 
+- [x] Publish a digest-pinned v0.1 report compatibility and mutation corpus.
 - explicit IPv4/IPv6 selection experiments;
 - native trust-store capability alongside the public-root baseline;
 - richer proxy CONNECT evidence;
 - structured environment capability snapshots;
 - corpus cases for resolver split-horizon, TLS identity, and redirect policy.
+- define an integrity-bound extension envelope or new report schema before
+  adding evidence fields outside the v0.1 model.
 
 ## 0.3 — opt-in application assertions
 

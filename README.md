@@ -18,6 +18,11 @@ hopwhy compare report-local.json report-ci.json
 hopwhy replay report-local.json
 ```
 
+The repository publishes a digest-pinned
+[v0.1 report corpus](tests/fixtures/contracts/README.md) for offline
+compatibility testing, including ten declared schema, type, enum, payload, and
+integrity mutations that the current reader rejects.
+
 ## Why
 
 Network troubleshooting often means composing resolver, route, TLS, and HTTP
@@ -138,7 +143,9 @@ Unknown fields are rejected instead of silently ignored.
 ## Compare and replay
 
 `compare` and `replay` never perform network activity. Both require
-`report_sha256` to match the report content.
+`report_sha256` to match the modeled v0.1 report fields. Unknown report
+extensions are ignored for forward compatibility and must not be treated as
+integrity-protected evidence.
 
 ```bash
 hopwhy --format json compare report-local.json report-ci.json

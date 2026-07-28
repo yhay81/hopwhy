@@ -26,6 +26,11 @@ jobs:
         run: cargo clippy --all-targets --locked -- -D warnings
       - name: Package manifest
         run: cargo package --locked --allow-dirty
+      - name: Report compatibility corpus
+        shell: bash
+        run: |
+          jq -e . tests/fixtures/contracts/v0.1/manifest.json >/dev/null
+          jq -e . tests/fixtures/contracts/v0.1/dns-failure.report.json >/dev/null
       - name: Machine contracts and completions
         shell: bash
         run: |

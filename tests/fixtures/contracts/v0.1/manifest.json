@@ -1,0 +1,81 @@
+{
+  "schema_version": "hopwhy.report-corpus.v1",
+  "accepted": [
+    {
+      "path": "dns-failure.report.json",
+      "sha256": "2db430413e04a3344802cb10a9505527d7c3fc7e2d3590be4eab2cc1c9c22218"
+    }
+  ],
+  "rejections": [
+    {
+      "id": "unsupported-schema",
+      "operation": "replace",
+      "pointer": "/schema_version",
+      "value": "hopwhy.report.v2",
+      "expected_code": "unsupported_report_schema"
+    },
+    {
+      "id": "missing-report-digest",
+      "operation": "replace",
+      "pointer": "/report_sha256",
+      "value": null,
+      "expected_code": "missing_report_digest"
+    },
+    {
+      "id": "report-digest-tamper",
+      "operation": "replace",
+      "pointer": "/report_sha256",
+      "value": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+      "expected_code": "report_integrity_mismatch"
+    },
+    {
+      "id": "target-tamper",
+      "operation": "replace",
+      "pointer": "/target/intended",
+      "value": "https://tampered.invalid/",
+      "expected_code": "report_integrity_mismatch"
+    },
+    {
+      "id": "phase-status-tamper",
+      "operation": "replace",
+      "pointer": "/phases/2/status",
+      "value": "passed",
+      "expected_code": "report_integrity_mismatch"
+    },
+    {
+      "id": "probe-outcome-tamper",
+      "operation": "replace",
+      "pointer": "/probes/0/outcome",
+      "value": "passed",
+      "expected_code": "report_integrity_mismatch"
+    },
+    {
+      "id": "invalid-phase-enum",
+      "operation": "replace",
+      "pointer": "/failed_at",
+      "value": "resolver",
+      "expected_code": "invalid_report_json"
+    },
+    {
+      "id": "invalid-method-enum",
+      "operation": "replace",
+      "pointer": "/options/method",
+      "value": "post",
+      "expected_code": "invalid_report_json"
+    },
+    {
+      "id": "wrong-budget-type",
+      "operation": "replace",
+      "pointer": "/budget/duration_ms",
+      "value": "15000",
+      "expected_code": "invalid_report_json"
+    },
+    {
+      "id": "missing-target",
+      "operation": "remove",
+      "pointer": "/target",
+      "value": null,
+      "expected_code": "invalid_report_json"
+    }
+  ]
+}
