@@ -13,7 +13,7 @@ categories = ["command-line-utilities", "network-programming"]
 exclude = [".github/**", "tests/**", "docs/**", "CONCEPT.md", "ROADMAP.md"]
 
 [dependencies]
-base64 = "=0.22.1"
+base64 = "=0.23.0"
 clap = { version = "=4.5.40", features = ["derive"] }
 clap_complete = "=4.5.54"
 humantime = "=2.2.0"
