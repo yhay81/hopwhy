@@ -5,6 +5,11 @@ CLI and machine-contract compatibility.
 
 ## [Unreleased]
 
+### Added
+
+- Digest-pinned `hopwhy.report.v1` golden report with exact serialization,
+  offline replay, forward-extension, and ten fail-closed mutation tests.
+
 ### Changed
 
 - Upgraded `schemars` to 1.2 while explicitly retaining the published JSON

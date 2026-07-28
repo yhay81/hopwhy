@@ -1,0 +1,168 @@
+{
+  "schema_version": "hopwhy.report.v1",
+  "tool_version": "0.1.0",
+  "started_at_unix_ms": 1700000000000,
+  "target": {
+    "intended": "https://example.invalid/health",
+    "effective": "https://example.invalid/health",
+    "scheme": "https",
+    "host": "example.invalid",
+    "port": 443
+  },
+  "proxy": {
+    "selected": false,
+    "source": null,
+    "endpoint": null,
+    "configuration_sha256": null,
+    "bypass_reason": "disabled_by_option"
+  },
+  "options": {
+    "budget_ms": 15000,
+    "max_probes": 12,
+    "max_addresses": 4,
+    "max_redirects": 5,
+    "max_body_bytes": 4096,
+    "include_body_sample": false,
+    "allow_private": false,
+    "show_addresses": false,
+    "show_query_values": false,
+    "disable_proxy": true,
+    "method": "get"
+  },
+  "budget": {
+    "duration_ms": 15000,
+    "max_probes": 12,
+    "max_addresses": 4,
+    "max_redirects": 5,
+    "max_body_bytes": 4096
+  },
+  "usage": {
+    "elapsed_ms": 25,
+    "probes_used": 1,
+    "response_bytes_read": 0
+  },
+  "probes": [
+    {
+      "sequence": 0,
+      "kind": "dns_lookup",
+      "destination": "example.invalid:443",
+      "started_ms": 1,
+      "duration_ms": 20,
+      "outcome": "failed"
+    }
+  ],
+  "addresses": [],
+  "tls": null,
+  "http": [],
+  "phases": [
+    {
+      "name": "input",
+      "status": "passed",
+      "duration_ms": 1,
+      "observations": [
+        {
+          "kind": "target",
+          "value": "https://example.invalid/health",
+          "evidence": "the target parsed under the public-only policy"
+        }
+      ],
+      "limitations": [],
+      "error": null
+    },
+    {
+      "name": "proxy",
+      "status": "passed",
+      "duration_ms": 1,
+      "observations": [
+        {
+          "kind": "proxy_selected",
+          "value": false,
+          "evidence": "proxy use was explicitly disabled"
+        }
+      ],
+      "limitations": [],
+      "error": null
+    },
+    {
+      "name": "dns",
+      "status": "failed",
+      "duration_ms": 20,
+      "observations": [],
+      "limitations": [
+        "resolver internals and split-horizon configuration were not observed"
+      ],
+      "error": {
+        "code": "dns_lookup_failed",
+        "message": "the resolver returned no usable address",
+        "retryable": true
+      }
+    },
+    {
+      "name": "tcp",
+      "status": "not_observed",
+      "duration_ms": 0,
+      "observations": [],
+      "limitations": [
+        "TCP was not attempted after the DNS failure"
+      ],
+      "error": null
+    },
+    {
+      "name": "tls",
+      "status": "not_observed",
+      "duration_ms": 0,
+      "observations": [],
+      "limitations": [
+        "TLS was not attempted after the DNS failure"
+      ],
+      "error": null
+    },
+    {
+      "name": "http",
+      "status": "not_observed",
+      "duration_ms": 0,
+      "observations": [],
+      "limitations": [
+        "HTTP was not attempted after the DNS failure"
+      ],
+      "error": null
+    },
+    {
+      "name": "redirects",
+      "status": "not_observed",
+      "duration_ms": 0,
+      "observations": [],
+      "limitations": [
+        "redirect behavior was not observed"
+      ],
+      "error": null
+    },
+    {
+      "name": "assertions",
+      "status": "not_observed",
+      "duration_ms": 0,
+      "observations": [],
+      "limitations": [
+        "application assertions are unavailable in v0.1"
+      ],
+      "error": null
+    }
+  ],
+  "failed_at": "dns",
+  "hypotheses": [
+    {
+      "code": "dns_path_failed",
+      "statement": "The observable request path stopped during DNS resolution.",
+      "confidence": 0.8,
+      "evidence_phases": [
+        "dns"
+      ],
+      "next_safe_step": "Compare resolver configuration and answers in the failing environment."
+    }
+  ],
+  "ruled_out": [],
+  "omissions": [
+    "TCP, TLS, HTTP, redirects, and assertions were not observed"
+  ],
+  "report_sha256": "fd4db7c10c2d2e71775078e04cd737b67007f081f14de20d00f50f357410d166"
+}
