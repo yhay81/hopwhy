@@ -1,6 +1,6 @@
 [package]
 name = "hopwhy"
-version = "0.2.0"
+version = "0.3.0"
 edition = "2021"
 rust-version = "1.85"
 description = "Bounded causal DNS-to-HTTP diagnostics for humans and agents"

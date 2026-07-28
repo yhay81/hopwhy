@@ -5,8 +5,18 @@ CLI and machine-contract compatibility.
 
 ## [Unreleased]
 
+## [0.3.0] - 2026-07-29
+
+### Compatibility
+
+- Preserved the public v0.2 CLI, report, plan, compare, replay, schema, and
+  error contracts. The digest-pinned v0.1 corpus and supported-platform tests
+  continue to pass.
+
 ### Added
 
+- Published downloadable SLSA provenance bundles beside every native archive
+  and covered those bundles with `SHA256SUMS`.
 - Added a privacy-conscious adoption report form that captures evaluation,
   repeat-use, limitations, evidence, and public-listing permission.
 - Added a monthly maintainer-continuity drill that recovers the public Git
