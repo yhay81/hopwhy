@@ -2,7 +2,7 @@
 
 Bounded causal DNS-to-HTTP diagnostics for humans and agents.
 
-> Status: HopWhy 0.1 is the first supported release. The diagnostic engine,
+> Status: HopWhy 0.2 is the current supported release. The diagnostic engine,
 > offline comparison, machine contracts, deterministic fixtures, and signed
 > release automation are implemented.
 

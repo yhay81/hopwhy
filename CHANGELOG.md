@@ -5,6 +5,14 @@ CLI and machine-contract compatibility.
 
 ## [Unreleased]
 
+## [0.2.0] - 2026-07-29
+
+### Compatibility
+
+- Preserved the public v0.1 CLI, report, plan, compare, replay, schema, and
+  error contracts. The v0.2 offline reader accepts the digest-pinned v0.1
+  report corpus unchanged; no migration is required.
+
 ### Added
 
 - Digest-pinned `hopwhy.report.v1` golden report with exact serialization,
@@ -39,5 +47,6 @@ CLI and machine-contract compatibility.
 - Deterministic local fault fixtures and cross-platform release automation.
 - OSS governance, support, security, contribution, and signed release policy.
 
-[Unreleased]: https://github.com/yhay81/hopwhy/compare/v0.1.0...HEAD
+[Unreleased]: https://github.com/yhay81/hopwhy/compare/v0.2.0...HEAD
+[0.2.0]: https://github.com/yhay81/hopwhy/compare/v0.1.0...v0.2.0
 [0.1.0]: https://github.com/yhay81/hopwhy/releases/tag/v0.1.0

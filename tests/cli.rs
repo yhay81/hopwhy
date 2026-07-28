@@ -129,7 +129,10 @@ fn version_schema_and_completions_are_available() {
         .arg("--version")
         .assert()
         .success()
-        .stdout(predicate::str::contains("hopwhy 0.1.0"));
+        .stdout(predicate::str::contains(format!(
+            "hopwhy {}",
+            env!("CARGO_PKG_VERSION")
+        )));
 
     let schema = json_output(&["--format", "json", "schema", "--document", "report"]);
     assert_eq!(
