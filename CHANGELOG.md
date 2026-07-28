@@ -10,6 +10,8 @@ CLI and machine-contract compatibility.
 ### Added
 
 - Bounded DNS, TCP, direct TLS, HTTP, and manually validated redirect phases.
+- Deterministic Mozilla public-root validation for both direct TLS evidence and
+  the bounded HTTP client.
 - Public-address-only default policy with explicit private/local authorization.
 - Deterministic redaction for query values, addresses, proxy configuration, and
   bounded response metadata.

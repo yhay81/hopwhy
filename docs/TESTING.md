@@ -17,8 +17,10 @@ The 0.1 suite covers:
 - global probe exhaustion;
 - strict spec parsing.
 
-Hosted CI repeats the CLI fixture suite ten times and runs all targets on Linux,
-macOS, and Windows. Public-network access is never required for a merge.
+Hosted CI repeats the complete CLI fixture suite ten times on Linux, macOS, and
+Windows. This catches platform differences in accepted-socket modes, process
+execution, and bounded redirect handling. Public-network access is never
+required for a merge.
 
 ## Corpus acceptance
 

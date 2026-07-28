@@ -68,11 +68,17 @@ fn fixture(routes: Vec<(&'static str, &'static str)>) -> Fixture {
     let address = listener.local_addr().unwrap();
     listener.set_nonblocking(true).unwrap();
     let handle = thread::spawn(move || {
-        let deadline = Instant::now() + Duration::from_secs(10);
+        let deadline = Instant::now() + Duration::from_secs(20);
+        let mut accepted_connections = 0;
         let mut requests = 0;
         while requests < routes.len() && Instant::now() < deadline {
             match listener.accept() {
                 Ok((mut stream, _)) => {
+                    accepted_connections += 1;
+                    // Accepted sockets can inherit nonblocking mode differently
+                    // across platforms. The fixture needs a bounded blocking
+                    // read so it does not close just before request bytes arrive.
+                    stream.set_nonblocking(false).unwrap();
                     stream
                         .set_read_timeout(Some(Duration::from_secs(1)))
                         .unwrap();
@@ -103,7 +109,12 @@ fn fixture(routes: Vec<(&'static str, &'static str)>) -> Fixture {
                 Err(_) => break,
             }
         }
-        assert_eq!(requests, routes.len());
+        assert_eq!(
+            requests,
+            routes.len(),
+            "fixture served {requests}/{} requests after accepting {accepted_connections} connections",
+            routes.len()
+        );
     });
     Fixture { address, handle }
 }
