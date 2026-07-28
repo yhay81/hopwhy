@@ -10,10 +10,17 @@ describe:
 - whether the earliest failed phase was useful and accurate;
 - probe count and elapsed time;
 - what remained ambiguous;
+- the remediation, escalation, or safe non-action the report improved;
+- whether use repeated after at least 30 days;
+- false causes, missed phases, or unsafe recommendations encountered;
 - permission to list the adoption publicly.
 
 Do not submit production targets, private addresses, credentials, certificates,
 or unredacted reports. Open a documentation pull request or Discussion with a
 sanitized summary.
 
-No independent adopters are listed yet.
+## Verified adopters
+
+| Adopter | Diagnostic workflow | Platform | Repeat use | Evidence |
+| --- | --- | --- | --- | --- |
+| _None yet_ | — | — | — | — |

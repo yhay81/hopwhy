@@ -9,6 +9,9 @@ CLI and machine-contract compatibility.
 
 - Upgraded `schemars` to 1.2 while explicitly retaining the published JSON
   Schema draft-07 machine contract.
+- Defined measurable v1.0 compatibility, diagnostic-accuracy, SSRF and
+  redaction safety, performance, delivery, maintenance, contribution, and
+  repeat-adoption gates.
 
 ## [0.1.0] - 2026-07-28
 
