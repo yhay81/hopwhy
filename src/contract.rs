@@ -1,4 +1,4 @@
-use schemars::schema_for;
+use schemars::{generate::SchemaSettings, JsonSchema, Schema};
 use serde_json::{json, Value};
 
 use crate::error::{AppError, AppResult, ErrorClass};
@@ -135,19 +135,25 @@ pub fn brief_contract() -> Value {
 pub fn schema_document(document: &str) -> AppResult<Value> {
     match document {
         "brief" => Ok(brief_contract()),
-        "spec" => to_value(schema_for!(InspectSpec)),
-        "report" => to_value(schema_for!(Report)),
-        "plan" => to_value(schema_for!(InspectionPlan)),
-        "compare" => to_value(schema_for!(CompareResult)),
-        "replay" => to_value(schema_for!(ReplayResult)),
-        "capabilities" => to_value(schema_for!(Capabilities)),
-        "error" => to_value(schema_for!(ErrorEnvelope)),
+        "spec" => to_value(draft07_schema_for::<InspectSpec>()),
+        "report" => to_value(draft07_schema_for::<Report>()),
+        "plan" => to_value(draft07_schema_for::<InspectionPlan>()),
+        "compare" => to_value(draft07_schema_for::<CompareResult>()),
+        "replay" => to_value(draft07_schema_for::<ReplayResult>()),
+        "capabilities" => to_value(draft07_schema_for::<Capabilities>()),
+        "error" => to_value(draft07_schema_for::<ErrorEnvelope>()),
         _ => Err(AppError::new(
             ErrorClass::Usage,
             "unknown_schema_document",
             format!("unknown schema document {document}"),
         )),
     }
+}
+
+fn draft07_schema_for<T: JsonSchema>() -> Schema {
+    SchemaSettings::draft07()
+        .into_generator()
+        .into_root_schema_for::<T>()
 }
 
 fn to_value<T: serde::Serialize>(value: T) -> AppResult<Value> {
@@ -158,4 +164,30 @@ fn to_value<T: serde::Serialize>(value: T) -> AppResult<Value> {
             "a JSON Schema document could not be serialized",
         )
     })
+}
+
+#[cfg(test)]
+mod tests {
+    use super::schema_document;
+    use crate::error::AppResult;
+
+    #[test]
+    fn every_full_schema_uses_the_published_draft() -> AppResult<()> {
+        for document in [
+            "spec",
+            "report",
+            "plan",
+            "compare",
+            "replay",
+            "capabilities",
+            "error",
+        ] {
+            let schema = schema_document(document)?;
+            assert_eq!(
+                schema["$schema"], "http://json-schema.org/draft-07/schema#",
+                "{document} changed JSON Schema draft"
+            );
+        }
+        Ok(())
+    }
 }
