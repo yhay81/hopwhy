@@ -5,6 +5,11 @@ CLI and machine-contract compatibility.
 
 ## [Unreleased]
 
+### Changed
+
+- Upgraded `schemars` to 1.2 while explicitly retaining the published JSON
+  Schema draft-07 machine contract.
+
 ## [0.1.0] - 2026-07-28
 
 ### Added
