@@ -10,7 +10,15 @@ homepage = "https://github.com/yhay81/hopwhy"
 readme = "README.md"
 keywords = ["cli", "diagnostics", "http", "networking", "dns"]
 categories = ["command-line-utilities", "network-programming"]
-exclude = [".github/**", "tests/**", "docs/**", "CONCEPT.md", "ROADMAP.md"]
+exclude = [
+    "/.github/**",
+    "/.clusterfuzzlite/**",
+    "/.dockerignore",
+    "/fuzz/**",
+    "/docs/**",
+    "/CONCEPT.md",
+    "/ROADMAP.md",
+]
 
 [dependencies]
 base64 = "=0.23.0"

@@ -29,6 +29,10 @@ cargo +1.85.0 check --all-targets --locked
 cargo package --locked --allow-dirty
 ```
 
+URL policy and offline report parsing are continuously fuzzed. See
+[FUZZING.md](FUZZING.md) for the reproducible local command and crash-handling
+rules.
+
 Tests must use local deterministic fixtures. Do not make public-network tests a
 required CI dependency. Fault tests should assert the earliest failed phase,
 evidence, limits, redaction, and exit behavior.
