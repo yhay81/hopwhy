@@ -1,0 +1,32 @@
+name: Feature request
+description: Propose a bounded diagnostic or offline-analysis capability.
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: job
+    attributes:
+      label: Diagnostic job
+      description: What decision should the user make with this evidence?
+    validations:
+      required: true
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Required observations and forbidden overclaims
+    validations:
+      required: true
+  - type: textarea
+    id: probes
+    attributes:
+      label: Network and budget impact
+      description: Destinations, probe count, duration, bytes, redirects, and private-target implications.
+    validations:
+      required: true
+  - type: textarea
+    id: contract
+    attributes:
+      label: Contract impact
+      description: Proposed schema, exit-code, redaction, and compatibility changes.
+    validations:
+      required: true

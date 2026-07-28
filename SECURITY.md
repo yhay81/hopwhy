@@ -1,0 +1,39 @@
+# Security policy
+
+## Supported versions
+
+Until 1.0, only the latest published release receives security fixes.
+
+| Version | Supported |
+| --- | :---: |
+| latest | yes |
+| older | no |
+
+## Private reporting
+
+Do not open a public issue for a vulnerability. Use
+[GitHub private vulnerability reporting](https://github.com/yhay81/hopwhy/security/advisories/new).
+Include the affected version and platform, target class, exact bounded options,
+whether a proxy was involved, redacted reproduction steps, and expected impact.
+Never attach credentials, complete internal URLs, private certificates, or
+unredacted production reports unless explicitly requested in the private
+advisory.
+
+Maintainers aim to acknowledge reports within 7 days and provide an assessment
+or follow-up plan within 14 days. Timelines may change with complexity.
+
+## Security model
+
+HopWhy is an active network client, not a sandbox.
+
+- Non-public addresses are denied by default but may be explicitly authorized.
+- DNS rebinding cannot be eliminated universally; the selected endpoint is
+  pinned where the HTTP client permits and limitations remain documented.
+- Public-root TLS validation is never silently disabled.
+- Proxy and target credentials are not emitted.
+- Body samples require explicit opt-in.
+- Malicious endpoints can delay, fragment, redirect, or return adversarial
+  protocol data; all supported reads and probe counts are bounded.
+- HopWhy does not prove what happened inside an unobservable network segment.
+
+Read [docs/SAFETY.md](docs/SAFETY.md) for operational guidance.
