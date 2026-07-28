@@ -538,12 +538,7 @@ fn probe_tls(
     let _ = stream.set_read_timeout(Some(timeout));
     let _ = stream.set_write_timeout(Some(timeout));
 
-    let mut roots = RootCertStore::empty();
-    roots.extend(webpki_roots::TLS_SERVER_ROOTS.iter().cloned());
-    let mut config = ClientConfig::builder()
-        .with_root_certificates(roots)
-        .with_no_client_auth();
-    config.alpn_protocols = vec![b"h2".to_vec(), b"http/1.1".to_vec()];
+    let config = tls_client_config();
     let server_name = ServerName::try_from(server_host.to_owned()).map_err(|_| {
         tracker.finish_probe(probe.clone(), started, "invalid_server_name");
         AppError::new(
@@ -724,7 +719,8 @@ fn build_http_client(
         .timeout(remaining)
         .user_agent(format!("hopwhy/{TOOL_VERSION}"))
         .no_proxy()
-        .resolve(&proxy.connect_host, selected_address);
+        .resolve(&proxy.connect_host, selected_address)
+        .tls_backend_preconfigured(tls_client_config());
 
     if let Some(proxy_url) = &proxy.url {
         let reqwest_proxy = reqwest::Proxy::all(proxy_url.as_str()).map_err(|_| {
@@ -744,6 +740,16 @@ fn build_http_client(
             "the bounded HTTP client could not initialize",
         )
     })
+}
+
+fn tls_client_config() -> ClientConfig {
+    let mut roots = RootCertStore::empty();
+    roots.extend(webpki_roots::TLS_SERVER_ROOTS.iter().cloned());
+    let mut config = ClientConfig::builder()
+        .with_root_certificates(roots)
+        .with_no_client_auth();
+    config.alpn_protocols = vec![b"h2".to_vec(), b"http/1.1".to_vec()];
+    config
 }
 
 fn response_to_hop(
