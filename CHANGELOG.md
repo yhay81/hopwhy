@@ -9,6 +9,8 @@ CLI and machine-contract compatibility.
 
 - Digest-pinned `hopwhy.report.v1` golden report with exact serialization,
   offline replay, forward-extension, and ten fail-closed mutation tests.
+- Reproducible loopback redirect/body-pressure and network-free operation
+  benchmark harness with raw runner metadata and 90-day workflow artifacts.
 
 ### Changed
 

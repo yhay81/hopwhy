@@ -23,6 +23,11 @@ The repository publishes a digest-pinned
 compatibility testing, including ten declared schema, type, enum, payload, and
 integrity mutations that the current reader rejects.
 
+The versioned [performance harness](benchmarks/README.md) publishes raw
+loopback redirect/body-pressure and network-free compare, replay, integrity,
+and schema baselines without turning one noisy hosted-runner sample into a
+release threshold.
+
 ## Why
 
 Network troubleshooting often means composing resolver, route, TLS, and HTTP
