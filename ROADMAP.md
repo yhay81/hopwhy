@@ -26,7 +26,9 @@ The roadmap is capability- and evidence-driven, not a date promise.
 - status, header, content-type, and bounded body-digest assertions;
 - signed fixture corpus and scorer for earliest-phase accuracy;
 - machine-readable recommendation catalog;
-- performance and false-cause benchmark publication.
+- [x] reproducible live redirect/body-pressure and offline-operation
+  performance baseline with raw hosted-runner measurements;
+- false-cause benchmark publication.
 
 ## v1.0 quality criteria
 
