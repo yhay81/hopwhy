@@ -48,6 +48,13 @@ accurate uncertainty, enforced safety defaults, or real diagnostic use.
 - A capability downgrade, unavailable phase, proxy limitation, or trust-root
   difference is explicit and never converted into a definitive causal claim.
 
+Current evidence: v0.2 and v0.3 provide two released compatibility cycles. The
+current v0.3 offline reader accepts and replays the digest-pinned v0.1 report
+corpus unchanged on every CI operating system. The v0.2 and v0.3 release notes
+record contract preservation; no migration is required. Future contract
+versions must add golden documents and an explicit migration or no-migration
+decision.
+
 ### Diagnostic accuracy and security
 
 - A published corpus of at least 50 labeled DNS-to-HTTP scenarios achieves at
