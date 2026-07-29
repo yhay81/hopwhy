@@ -30,7 +30,7 @@ pub fn capabilities() -> Capabilities {
                 &[
                     "HTTP(S) proxy and NO_PROXY environment",
                     "SOCKS and PAC are not supported",
-                    "proxy credentials are never emitted",
+                    "proxy credentials and credential-derived fingerprints are never emitted",
                 ],
             ),
             capability(

@@ -16,6 +16,8 @@ CLI and machine-contract compatibility.
 
 ### Fixed
 
+- Stopped hashing raw proxy environment values; configuration fingerprints now
+  cover only the credential-free, query-redacted canonical endpoint.
 - Rejected performance evidence with a non-canonical commit identity,
   incomplete runner metadata, a non-raw sample marker, or reused sample paths.
 
