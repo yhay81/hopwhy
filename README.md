@@ -45,7 +45,7 @@ HopWhy performs network activity only for `inspect` without `--dry-run`.
   addresses are denied unless `--allow-private` is supplied.
 - URL credentials are denied.
 - Query values and resolved addresses are redacted by default.
-- Proxy credentials are never emitted.
+- Proxy credentials and credential-derived fingerprints are never emitted.
 - Redirects are disabled in the HTTP client and followed manually only after
   target policy is re-evaluated.
 - Duration, probe count, address attempts, redirect count, and body reads are
@@ -194,7 +194,7 @@ See [docs/CONTRACT.md](docs/CONTRACT.md) and
 
 | Phase | 0.1 support |
 | --- | --- |
-| Proxy | `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, `NO_PROXY`; credentials redacted |
+| Proxy | `HTTP_PROXY`, `HTTPS_PROXY`, `ALL_PROXY`, `NO_PROXY`; credentials excluded from endpoints and configuration fingerprints |
 | DNS | System resolver answers and address-family visibility |
 | TCP | Bounded IPv4/IPv6 attempts |
 | TLS | Independent direct handshake, public-root validation, protocol/cipher/ALPN/certificate digest |

@@ -37,13 +37,16 @@ By default:
 
 - query keys remain visible but values become `REDACTED`;
 - addresses become stable 12-hex SHA-256 tokens with an address-family label;
-- proxy endpoints omit credentials and query values;
+- proxy endpoints omit credentials and query values, and configuration
+  fingerprints hash only that credential-free, query-redacted endpoint;
 - only a small response header allowlist is stored;
 - response body bytes are omitted, while a bounded sample digest remains.
 
 `--show-query-values`, `--show-addresses`, and `--include-body-sample` expand
 disclosure. Reports preserve those option values. Review expanded reports
 before sharing them.
+
+Raw proxy environment values are never emitted or hashed into a report.
 
 Certificate bodies are not emitted. The direct TLS phase records the leaf
 certificate SHA-256, certificate count, protocol, cipher suite, and ALPN.

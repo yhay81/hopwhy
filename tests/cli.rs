@@ -369,9 +369,10 @@ fn compare_reports_detects_http_status_differences() {
 }
 
 #[test]
-fn proxy_credentials_are_never_emitted() {
+fn proxy_credentials_and_derived_hashes_are_never_emitted() {
+    let raw_proxy = "http://agent:secret@127.0.0.1:9";
     let output = command()
-        .env("http_proxy", "http://agent:secret@127.0.0.1:9")
+        .env("http_proxy", raw_proxy)
         .args(["--format", "json", "inspect", "http://example.com/"])
         .assert()
         .success()
@@ -382,8 +383,19 @@ fn proxy_credentials_are_never_emitted() {
 
     assert_eq!(report["proxy"]["selected"], true);
     assert_eq!(report["proxy"]["source"], "http_proxy");
+    assert_eq!(report["proxy"]["endpoint"], "http://127.0.0.1:9/");
+    assert_eq!(
+        report["proxy"]["configuration_sha256"],
+        hopwhy::policy::sha256_text("http://127.0.0.1:9/")
+    );
+    let raw_configuration_sha256 = hopwhy::policy::sha256_text(raw_proxy);
+    assert_ne!(
+        report["proxy"]["configuration_sha256"],
+        raw_configuration_sha256
+    );
     assert!(!rendered.contains("agent"));
     assert!(!rendered.contains("secret"));
+    assert!(!rendered.contains(&raw_configuration_sha256));
     assert_eq!(report["failed_at"], "dns");
 }
 

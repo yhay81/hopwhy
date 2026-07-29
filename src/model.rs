@@ -80,6 +80,7 @@ pub struct ProxySummary {
     pub selected: bool,
     pub source: Option<String>,
     pub endpoint: Option<String>,
+    /// SHA-256 of the credential-free, query-redacted canonical proxy endpoint.
     pub configuration_sha256: Option<String>,
     pub bypass_reason: Option<String>,
 }

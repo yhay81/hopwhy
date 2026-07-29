@@ -65,6 +65,10 @@ but CONNECT and target handshake details are not split.
 
 ## Report integrity
 
+Proxy configuration fingerprints are SHA-256 digests of the normalized,
+credential-free, query-redacted endpoint stored in the report. Raw proxy
+environment values never enter the report or its seal.
+
 The report is serialized with `report_sha256: null`; SHA-256 of those bytes is
 then stored as `report_sha256`. Offline commands recompute the same value before
 using a report. The seal detects accidental or malicious edits but is not an

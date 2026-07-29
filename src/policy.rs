@@ -169,12 +169,13 @@ pub fn resolve_proxy(target: &Url, options: &InspectionOptions) -> AppResult<Res
         )
     })?;
 
+    let credential_free_endpoint = redact_url(&proxy_url, false);
     Ok(ResolvedProxy {
         summary: ProxySummary {
             selected: true,
             source: Some(environment.key),
-            endpoint: Some(redact_url(&proxy_url, false)),
-            configuration_sha256: Some(sha256_text(&environment.value)),
+            endpoint: Some(credential_free_endpoint.clone()),
+            configuration_sha256: Some(sha256_text(&credential_free_endpoint)),
             bypass_reason: None,
         },
         url: Some(proxy_url),

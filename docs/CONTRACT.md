@@ -40,9 +40,10 @@ integrity-protected evidence.
 - `ndjson` is exactly one compact document plus a trailing newline.
 - completion output is raw shell source.
 
-Query values, addresses, proxy secrets, and body bytes follow the option values
-recorded in `options`. Consumers can therefore detect a report with expanded
-disclosure.
+Query values, addresses, and body bytes follow the option values recorded in
+`options`. Consumers can therefore detect a report with expanded disclosure.
+Proxy credentials are unconditionally excluded from both the endpoint and its
+configuration fingerprint.
 
 ## Diagnostic versus operational failure
 
