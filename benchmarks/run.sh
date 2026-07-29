@@ -210,7 +210,7 @@ jq -n \
           $schema_metrics[0].wall_seconds
         ] | max | . * 1000)
     },
-    threshold_status: "observation_only"
+    threshold_status: "raw_sample"
   }' >"${result_path}"
 
 jq -e '
