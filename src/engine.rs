@@ -30,6 +30,9 @@ use crate::policy::{
 const TOOL_VERSION: &str = env!("CARGO_PKG_VERSION");
 static CRYPTO_PROVIDER: Once = Once::new();
 
+#[cfg(test)]
+mod accuracy_corpus_tests;
+
 pub fn plan(spec: &InspectSpec) -> AppResult<InspectionPlan> {
     validate_options(&spec.options)?;
     let target = parse_target(&spec.target, &spec.options)?;
@@ -99,6 +102,13 @@ fn planned(sequence: &mut u32, kind: ProbeKind, purpose: &str, conditional: bool
 
 pub fn inspect(spec: &InspectSpec) -> AppResult<Report> {
     ensure_crypto_provider();
+    inspect_with_backend(spec, &mut LiveBackend)
+}
+
+fn inspect_with_backend<B: DiagnosticBackend>(
+    spec: &InspectSpec,
+    backend: &mut B,
+) -> AppResult<Report> {
     validate_options(&spec.options)?;
     let parsed = parse_target(&spec.target, &spec.options)?;
     let started_at_unix_ms = unix_time_ms();
@@ -132,7 +142,7 @@ pub fn inspect(spec: &InspectSpec) -> AppResult<Report> {
     ));
 
     let dns_started = Instant::now();
-    let resolution = resolve_addresses(&mut tracker, &proxy, &spec.options);
+    let resolution = backend.resolve_addresses(&mut tracker, &proxy, &spec.options);
     let (all_addresses, permitted_addresses) = match resolution {
         Ok(addresses) => addresses,
         Err(error) => {
@@ -212,30 +222,31 @@ pub fn inspect(spec: &InspectSpec) -> AppResult<Report> {
     ));
 
     let tcp_started = Instant::now();
-    let selected_address = match connect_first(&mut tracker, &permitted_addresses, &spec.options) {
-        Ok(address) => address,
-        Err(error) => {
-            phases.push(failed_phase(
-                PhaseName::Tcp,
-                elapsed_ms(tcp_started),
-                &error.code,
-                &error.message,
-                error.retryable,
-            ));
-            return Ok(finalize_report(
-                parsed.summary,
-                proxy,
-                spec.options.clone(),
-                tracker,
-                started_at_unix_ms,
-                address_observations,
-                None,
-                Vec::new(),
-                phases,
-                omissions,
-            ));
-        }
-    };
+    let selected_address =
+        match backend.connect_first(&mut tracker, &permitted_addresses, &spec.options) {
+            Ok(address) => address,
+            Err(error) => {
+                phases.push(failed_phase(
+                    PhaseName::Tcp,
+                    elapsed_ms(tcp_started),
+                    &error.code,
+                    &error.message,
+                    error.retryable,
+                ));
+                return Ok(finalize_report(
+                    parsed.summary,
+                    proxy,
+                    spec.options.clone(),
+                    tracker,
+                    started_at_unix_ms,
+                    address_observations,
+                    None,
+                    Vec::new(),
+                    phases,
+                    omissions,
+                ));
+            }
+        };
     phases.push(passed_phase(
         PhaseName::Tcp,
         elapsed_ms(tcp_started),
@@ -266,7 +277,7 @@ pub fn inspect(spec: &InspectSpec) -> AppResult<Report> {
                 .to_owned(),
         );
     } else {
-        match probe_tls(
+        match backend.probe_tls(
             &mut tracker,
             selected_address,
             &parsed.summary.host,
@@ -309,7 +320,7 @@ pub fn inspect(spec: &InspectSpec) -> AppResult<Report> {
     }
 
     let http_started = Instant::now();
-    let http_result = run_http(
+    let http_result = backend.run_http(
         &mut tracker,
         &parsed.url,
         &proxy,
@@ -393,6 +404,88 @@ pub fn inspect(spec: &InspectSpec) -> AppResult<Report> {
         phases,
         omissions,
     ))
+}
+
+trait DiagnosticBackend {
+    fn resolve_addresses(
+        &mut self,
+        tracker: &mut Tracker,
+        proxy: &ResolvedProxy,
+        options: &InspectionOptions,
+    ) -> AppResult<(Vec<SocketAddr>, Vec<SocketAddr>)>;
+
+    fn connect_first(
+        &mut self,
+        tracker: &mut Tracker,
+        addresses: &[SocketAddr],
+        options: &InspectionOptions,
+    ) -> AppResult<SocketAddr>;
+
+    fn probe_tls(
+        &mut self,
+        tracker: &mut Tracker,
+        address: SocketAddr,
+        server_host: &str,
+        show_addresses: bool,
+    ) -> AppResult<TlsSummary>;
+
+    fn run_http(
+        &mut self,
+        tracker: &mut Tracker,
+        initial_url: &Url,
+        initial_proxy: &ResolvedProxy,
+        initial_address: SocketAddr,
+        options: &InspectionOptions,
+    ) -> AppResult<(Vec<HttpHop>, Option<AppError>)>;
+}
+
+struct LiveBackend;
+
+impl DiagnosticBackend for LiveBackend {
+    fn resolve_addresses(
+        &mut self,
+        tracker: &mut Tracker,
+        proxy: &ResolvedProxy,
+        options: &InspectionOptions,
+    ) -> AppResult<(Vec<SocketAddr>, Vec<SocketAddr>)> {
+        resolve_addresses(tracker, proxy, options)
+    }
+
+    fn connect_first(
+        &mut self,
+        tracker: &mut Tracker,
+        addresses: &[SocketAddr],
+        options: &InspectionOptions,
+    ) -> AppResult<SocketAddr> {
+        connect_first(tracker, addresses, options)
+    }
+
+    fn probe_tls(
+        &mut self,
+        tracker: &mut Tracker,
+        address: SocketAddr,
+        server_host: &str,
+        show_addresses: bool,
+    ) -> AppResult<TlsSummary> {
+        probe_tls(tracker, address, server_host, show_addresses)
+    }
+
+    fn run_http(
+        &mut self,
+        tracker: &mut Tracker,
+        initial_url: &Url,
+        initial_proxy: &ResolvedProxy,
+        initial_address: SocketAddr,
+        options: &InspectionOptions,
+    ) -> AppResult<(Vec<HttpHop>, Option<AppError>)> {
+        run_http(
+            tracker,
+            initial_url,
+            initial_proxy,
+            initial_address,
+            options,
+        )
+    }
 }
 
 fn ensure_crypto_provider() {

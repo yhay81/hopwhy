@@ -1,0 +1,2852 @@
+{
+  "cases": [
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "dns_resolution_failed"
+      },
+      "hidden_cause": "upstream_nameserver_drop",
+      "id": "dns-00",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": "dns_resolution_failed",
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "dns_empty_answer"
+      },
+      "hidden_cause": "split_horizon_empty_answer",
+      "id": "dns-01",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": "dns_empty_answer",
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "resolver_latency_beyond_budget",
+      "id": "dns-02",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": "budget_exhausted",
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "dns_resolution_failed"
+      },
+      "hidden_cause": "negative_cache_or_authority_failure",
+      "id": "dns-03",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": "dns_resolution_failed",
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "dns_empty_answer"
+      },
+      "hidden_cause": "search_domain_mismatch",
+      "id": "dns-04",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": "dns_empty_answer",
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "dns_resolution_failed"
+      },
+      "hidden_cause": "dns_transport_blocked",
+      "id": "dns-05",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": "dns_resolution_failed",
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "resolver_library_stall",
+      "id": "dns-06",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": "budget_exhausted",
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "dns_resolution_failed"
+      },
+      "hidden_cause": "dnssec_validation_path",
+      "id": "dns-07",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": "dns_resolution_failed",
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "error",
+          "retryable": true
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "non_public_address_denied"
+      },
+      "hidden_cause": "loopback_address_policy_denial",
+      "id": "dns-08",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "127.0.0.1:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "dns_failure",
+      "expected": {
+        "backend_calls": [
+          "dns"
+        ],
+        "failed_at": "dns",
+        "hypothesis_code": "non_public_address_denied"
+      },
+      "hidden_cause": "private_address_policy_denial",
+      "id": "dns-09",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "10.0.0.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "route_blackhole",
+      "id": "tcp-00",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "host_firewall_drop",
+      "id": "tcp-01",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "connect_latency_beyond_budget",
+      "id": "tcp-02",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "budget_exhausted",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "listener_absent",
+      "id": "tcp-03",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "address_family_path_failure",
+      "id": "tcp-04",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "nat_mapping_absent",
+      "id": "tcp-05",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "syn_retransmission_budget",
+      "id": "tcp-06",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "budget_exhausted",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "upstream_acl_drop",
+      "id": "tcp-07",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "transient_network_partition",
+      "id": "tcp-08",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tcp_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp"
+        ],
+        "failed_at": "tcp",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "service_port_mismatch",
+      "id": "tcp-09",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": "tcp_connect_failed",
+          "result": "error",
+          "retryable": true
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_transport_failed"
+      },
+      "hidden_cause": "fresh_connection_race",
+      "id": "tls-00",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_transport_failed",
+          "result": "error",
+          "retryable": true
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_handshake_failed"
+      },
+      "hidden_cause": "untrusted_certificate_chain",
+      "id": "tls-01",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_handshake_failed"
+      },
+      "hidden_cause": "expired_or_not_yet_valid_certificate",
+      "id": "tls-02",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_handshake_failed"
+      },
+      "hidden_cause": "server_name_identity_mismatch",
+      "id": "tls-03",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "invalid_tls_server_name"
+      },
+      "hidden_cause": "unsupported_identity_representation",
+      "id": "tls-04",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "invalid_tls_server_name",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_configuration_failed"
+      },
+      "hidden_cause": "local_crypto_provider_state",
+      "id": "tls-05",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_configuration_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "handshake_latency_beyond_budget",
+      "id": "tls-06",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "budget_exhausted",
+          "result": "error",
+          "retryable": true
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_handshake_failed"
+      },
+      "hidden_cause": "protocol_version_mismatch",
+      "id": "tls-07",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_handshake_failed"
+      },
+      "hidden_cause": "cipher_policy_mismatch",
+      "id": "tls-08",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_handshake_failed",
+          "result": "error",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "tls_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls"
+        ],
+        "failed_at": "tls",
+        "hypothesis_code": "tls_transport_failed"
+      },
+      "hidden_cause": "load_balancer_connection_reset",
+      "id": "tls-09",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": "tls_transport_failed",
+          "result": "error",
+          "retryable": true
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_timeout"
+      },
+      "hidden_cause": "application_handler_stall",
+      "id": "http-00",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_timeout",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_request_failed"
+      },
+      "hidden_cause": "server_closed_without_response",
+      "id": "http-01",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_connect_failed"
+      },
+      "hidden_cause": "connection_pool_transport_race",
+      "id": "http-02",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_connect_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_tls_or_connect_failed"
+      },
+      "hidden_cause": "proxy_tunnel_or_tls_failure",
+      "id": "http-03",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_tls_or_connect_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "response_body_read_failed"
+      },
+      "hidden_cause": "mid_body_stream_reset",
+      "id": "http-04",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "response_body_read_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "response_latency_beyond_budget",
+      "id": "http-05",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "budget_exhausted",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_request_failed"
+      },
+      "hidden_cause": "protocol_parse_failure",
+      "id": "http-06",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_timeout"
+      },
+      "hidden_cause": "upstream_dependency_stall",
+      "id": "http-07",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_timeout",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_connect_failed"
+      },
+      "hidden_cause": "address_reachability_changed",
+      "id": "http-08",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_connect_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "http_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "http",
+        "hypothesis_code": "http_request_failed"
+      },
+      "hidden_cause": "intermediary_closed_connection",
+      "id": "http-09",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": "http_request_failed",
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "error",
+          "retryable": true,
+          "statuses": []
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": false,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "invalid_redirect_location"
+      },
+      "hidden_cause": "invalid_location_syntax",
+      "id": "redirect-00",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "invalid_redirect_location",
+          "redirect_retryable": false,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "redirect_target_denied"
+      },
+      "hidden_cause": "non_public_redirect_target",
+      "id": "redirect-01",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "redirect_target_denied",
+          "redirect_retryable": false,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "redirect_limit_reached"
+      },
+      "hidden_cause": "redirect_cycle_or_excess_hops",
+      "id": "redirect-02",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "redirect_limit_reached",
+          "redirect_retryable": false,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "dns_resolution_failed"
+      },
+      "hidden_cause": "redirect_name_resolution_failure",
+      "id": "redirect-03",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "dns_resolution_failed",
+          "redirect_retryable": true,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "dns_empty_answer"
+      },
+      "hidden_cause": "redirect_empty_dns_answer",
+      "id": "redirect-04",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "dns_empty_answer",
+          "redirect_retryable": true,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "tcp_connect_failed"
+      },
+      "hidden_cause": "redirect_target_unreachable",
+      "id": "redirect-05",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "tcp_connect_failed",
+          "redirect_retryable": true,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "budget_exhausted"
+      },
+      "hidden_cause": "redirect_budget_exhausted",
+      "id": "redirect-06",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "budget_exhausted",
+          "redirect_retryable": true,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "embedded_credentials_denied"
+      },
+      "hidden_cause": "credential_bearing_redirect",
+      "id": "redirect-07",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "embedded_credentials_denied",
+          "redirect_retryable": false,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "unsupported_scheme"
+      },
+      "hidden_cause": "non_http_redirect_scheme",
+      "id": "redirect-08",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "unsupported_scheme",
+          "redirect_retryable": false,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "redirect_failure",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": "redirects",
+        "hypothesis_code": "invalid_proxy_url"
+      },
+      "hidden_cause": "redirect_proxy_configuration",
+      "id": "redirect-09",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": "invalid_proxy_url",
+          "redirect_retryable": false,
+          "result": "redirect_error",
+          "retryable": false,
+          "statuses": [
+            302
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-00",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            200
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-01",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            204
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-02",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            301,
+            200
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-03",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            302,
+            204
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-04",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            404
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-05",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            500
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-06",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            503
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-07",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            307,
+            200
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "tls",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-08",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:443"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:443"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            206
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "https://scenario.example/health"
+    },
+    {
+      "category": "response_observed",
+      "expected": {
+        "backend_calls": [
+          "dns",
+          "tcp",
+          "http"
+        ],
+        "failed_at": null,
+        "hypothesis_code": "request_path_observed"
+      },
+      "hidden_cause": "no_failure_claimed",
+      "id": "success-09",
+      "observations": {
+        "dns": {
+          "all_addresses": [
+            "8.8.8.8:80"
+          ],
+          "error_code": null,
+          "permitted_addresses": [
+            "8.8.8.8:80"
+          ],
+          "result": "success",
+          "retryable": false
+        },
+        "http": {
+          "error_code": null,
+          "redirect_error_code": null,
+          "redirect_retryable": false,
+          "result": "success",
+          "retryable": false,
+          "statuses": [
+            429
+          ]
+        },
+        "tcp": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        },
+        "tls": {
+          "error_code": null,
+          "result": "success",
+          "retryable": false
+        }
+      },
+      "root_cause_observable": true,
+      "target": "http://scenario.example/health"
+    }
+  ],
+  "definitive_claim_rubric": "For an unobservable hidden cause, confidence 1.0, evidence outside the failed phase, naming the hidden cause, or causal-proof wording counts as a definitive root-cause claim.",
+  "labeling_methodology": "Network observations and expected earliest phases are defined in explicit fault-family tables; generation does not invoke HopWhy.",
+  "license": "MIT",
+  "schema_version": "hopwhy.diagnostic-accuracy-corpus.v1"
+}
