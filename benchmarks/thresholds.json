@@ -1,0 +1,60 @@
+{
+  "schema_version": "benchmark.thresholds.v1",
+  "benchmark_schema_version": "hopwhy.benchmark.v1",
+  "runner": {
+    "os": "Linux",
+    "arch": "x86_64",
+    "image": "ubuntu24"
+  },
+  "warmup_count": 1,
+  "sample_count": 20,
+  "metrics": [
+    {
+      "id": "live_diagnostic_wall_p95",
+      "description": "Bounded loopback redirect and response-body diagnostic",
+      "source": {
+        "kind": "measurement_process",
+        "measurement_id": "live_redirect_body_pressure",
+        "field": "wall_seconds"
+      },
+      "statistic": "p95",
+      "maximum": 15.0,
+      "unit": "seconds",
+      "regression": {
+        "max_ratio": 1.5,
+        "absolute_tolerance": 0.1
+      }
+    },
+    {
+      "id": "offline_operations_wall_p95",
+      "description": "Slowest replay, compare, or report-schema operation in each sample",
+      "source": {
+        "kind": "derived",
+        "field": "offline_max_wall_ms",
+        "scale": 0.001
+      },
+      "statistic": "p95",
+      "maximum": 0.25,
+      "unit": "seconds",
+      "regression": {
+        "max_ratio": 1.5,
+        "absolute_tolerance": 0.05
+      }
+    },
+    {
+      "id": "bounded_peak_rss_max",
+      "description": "Maximum peak resident memory across live and offline bounded workloads",
+      "source": {
+        "kind": "derived",
+        "field": "max_peak_rss_mib"
+      },
+      "statistic": "max",
+      "maximum": 256.0,
+      "unit": "MiB",
+      "regression": {
+        "max_ratio": 1.5,
+        "absolute_tolerance": 16.0
+      }
+    }
+  ]
+}
