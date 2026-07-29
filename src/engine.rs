@@ -79,7 +79,7 @@ pub fn plan(spec: &InspectSpec) -> AppResult<InspectionPlan> {
         policy: if spec.options.allow_private {
             "public and explicitly authorized non-public addresses are permitted".to_owned()
         } else {
-            "only public addresses are permitted; private, local, special-use, and reserved addresses are denied".to_owned()
+            "only globally reachable addresses are permitted; private, local, special-use, non-global, and reserved addresses are denied".to_owned()
         },
         planned_probes: probes,
         network_performed: false,

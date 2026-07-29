@@ -2,7 +2,7 @@
 
 Bounded causal DNS-to-HTTP diagnostics for humans and agents.
 
-> Status: HopWhy 0.2 is the current supported release. The diagnostic engine,
+> Status: HopWhy 0.3 is the current supported release. The diagnostic engine,
 > offline comparison, machine contracts, deterministic fixtures, and signed
 > release automation are implemented.
 
@@ -41,8 +41,9 @@ an HTTP response does not imply application health without an assertion.
 HopWhy performs network activity only for `inspect` without `--dry-run`.
 
 - Only `http` and `https` targets are accepted.
-- Loopback, private, link-local, multicast, documentation, and reserved
-  addresses are denied unless `--allow-private` is supplied.
+- Loopback, private, link-local, multicast, documentation, reserved, and IANA
+  non-global IPv6 special-purpose addresses are denied unless
+  `--allow-private` is supplied.
 - URL credentials are denied.
 - Query values and resolved addresses are redacted by default.
 - Proxy credentials and credential-derived fingerprints are never emitted.

@@ -58,6 +58,12 @@ universally eliminate, DNS rebinding and proxy-side resolution behavior. HTTP
 proxies may resolve the target themselves. These limits are preserved in the
 report instead of converted into claims.
 
+IPv6 literals and resolver answers are classified against a dated IANA
+special-purpose registry snapshot. Non-global, reserved, and reachability-N/A
+prefixes fail closed before TCP, including when the address belongs to a proxy
+or redirect target. The same explicit `--allow-private` authority applies to
+every hop.
+
 Direct HTTPS targets receive a separate rustls handshake using the Mozilla
 public root set. HTTPS through a proxy is marked `not_observed` as a separate
 TLS phase; the HTTP client still validates TLS with the same public root set,

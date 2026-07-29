@@ -8,6 +8,8 @@ The 0.1 suite covers:
 - schema, version, and shell completion contracts;
 - network-free dry-run;
 - default loopback/private denial after DNS evidence;
+- IANA non-global, translation, special-purpose, and reserved IPv6 denial
+  before any TCP connection;
 - local HTTP success and safe header filtering;
 - explicit body sampling and truncation;
 - manually validated redirects and query redaction;

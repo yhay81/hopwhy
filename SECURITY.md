@@ -26,7 +26,9 @@ or follow-up plan within 14 days. Timelines may change with complexity.
 
 HopWhy is an active network client, not a sandbox.
 
-- Non-public addresses are denied by default but may be explicitly authorized.
+- Non-public addresses, including IANA non-global IPv6 special-purpose and
+  translation prefixes, are denied by default but may be explicitly
+  authorized.
 - DNS rebinding cannot be eliminated universally; the selected endpoint is
   pinned where the HTTP client permits and limitations remain documented.
 - Public-root TLS validation is never silently disabled.

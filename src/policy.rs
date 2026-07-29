@@ -303,9 +303,15 @@ fn classify_ipv4(address: Ipv4Addr) -> &'static str {
     }
 }
 
+// Classification follows the IANA IPv6 Special-Purpose Address Space snapshot
+// last updated 2025-10-09. Prefixes marked not globally reachable, N/A, or
+// reserved fail closed. Review the snapshot before each release:
+// https://www.iana.org/assignments/iana-ipv6-special-registry/
 fn classify_ipv6(address: Ipv6Addr) -> &'static str {
     let segments = address.segments();
-    if address.is_unspecified() {
+    if let Some(mapped) = address.to_ipv4_mapped() {
+        classify_ipv4(mapped)
+    } else if address.is_unspecified() {
         "unspecified"
     } else if address.is_loopback() {
         "loopback"
@@ -315,13 +321,69 @@ fn classify_ipv6(address: Ipv6Addr) -> &'static str {
         "unique_local"
     } else if segments[0] & 0xffc0 == 0xfe80 {
         "link_local"
-    } else if segments[0] == 0x2001 && segments[1] == 0x0db8 {
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0xfec0, 0, 0, 0, 0, 0, 0, 0), 10) {
+        "deprecated_site_local"
+    } else if ipv6_in_prefix(
+        address,
+        Ipv6Addr::new(0x0064, 0xff9b, 0x0001, 0, 0, 0, 0, 0),
+        48,
+    ) {
+        "local_translation"
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x0064, 0xff9b, 0, 0, 0, 0, 0, 0), 96) {
+        let octets = address.octets();
+        let embedded = Ipv4Addr::new(octets[12], octets[13], octets[14], octets[15]);
+        if classify_ipv4(embedded) == "public" {
+            "public"
+        } else {
+            "translation_non_public"
+        }
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x0100, 0, 0, 0, 0, 0, 0, 0), 64) {
+        "discard_only"
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x0100, 0, 0, 0x0001, 0, 0, 0, 0), 64) {
+        "dummy"
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x2001, 0x0002, 0, 0, 0, 0, 0, 0), 48) {
+        "benchmark"
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x2001, 0x0db8, 0, 0, 0, 0, 0, 0), 32)
+        || ipv6_in_prefix(address, Ipv6Addr::new(0x3fff, 0, 0, 0, 0, 0, 0, 0), 20)
+    {
         "documentation"
-    } else if let Some(mapped) = address.to_ipv4_mapped() {
-        classify_ipv4(mapped)
-    } else {
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x5f00, 0, 0, 0, 0, 0, 0, 0), 16) {
+        "special_use"
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x2001, 0, 0, 0, 0, 0, 0, 0), 23) {
+        if is_globally_reachable_iana_special(address) {
+            "public"
+        } else {
+            "special_use"
+        }
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x2002, 0, 0, 0, 0, 0, 0, 0), 16) {
+        "transition"
+    } else if ipv6_in_prefix(address, Ipv6Addr::new(0x2000, 0, 0, 0, 0, 0, 0, 0), 3) {
         "public"
+    } else {
+        "reserved"
     }
+}
+
+fn is_globally_reachable_iana_special(address: Ipv6Addr) -> bool {
+    [
+        Ipv6Addr::new(0x2001, 0x0001, 0, 0, 0, 0, 0, 0x0001),
+        Ipv6Addr::new(0x2001, 0x0001, 0, 0, 0, 0, 0, 0x0002),
+        Ipv6Addr::new(0x2001, 0x0001, 0, 0, 0, 0, 0, 0x0003),
+    ]
+    .contains(&address)
+        || ipv6_in_prefix(address, Ipv6Addr::new(0x2001, 0x0003, 0, 0, 0, 0, 0, 0), 32)
+        || ipv6_in_prefix(
+            address,
+            Ipv6Addr::new(0x2001, 0x0004, 0x0112, 0, 0, 0, 0, 0),
+            48,
+        )
+        || ipv6_in_prefix(address, Ipv6Addr::new(0x2001, 0x0020, 0, 0, 0, 0, 0, 0), 28)
+        || ipv6_in_prefix(address, Ipv6Addr::new(0x2001, 0x0030, 0, 0, 0, 0, 0, 0), 28)
+}
+
+fn ipv6_in_prefix(address: Ipv6Addr, network: Ipv6Addr, prefix_length: u32) -> bool {
+    let mask = u128::MAX << (128 - prefix_length);
+    u128::from(address) & mask == u128::from(network) & mask
 }
 
 pub fn sha256_text(value: &str) -> String {
@@ -331,7 +393,7 @@ pub fn sha256_text(value: &str) -> String {
 #[cfg(test)]
 #[allow(clippy::unwrap_used)]
 mod tests {
-    use super::{classify_ip, no_proxy_matches, parse_target, redact_url};
+    use super::{classify_ip, is_ip_permitted, no_proxy_matches, parse_target, redact_url};
     use crate::model::InspectionOptions;
     use std::net::{IpAddr, Ipv4Addr, Ipv6Addr};
 
@@ -346,6 +408,47 @@ mod tests {
             "private"
         );
         assert_eq!(classify_ip(IpAddr::V6(Ipv6Addr::LOCALHOST)), "loopback");
+    }
+
+    #[test]
+    fn denies_iana_non_global_and_reserved_ipv6_ranges_by_default() {
+        for (text, expected) in [
+            ("64:ff9b:1::a00:1", "local_translation"),
+            ("64:ff9b::a00:1", "translation_non_public"),
+            ("100::1", "discard_only"),
+            ("100:0:0:1::1", "dummy"),
+            ("2001::1", "special_use"),
+            ("2001:2::1", "benchmark"),
+            ("2001:db8::1", "documentation"),
+            ("2002::1", "transition"),
+            ("3fff::1", "documentation"),
+            ("5f00::1", "special_use"),
+            ("fec0::1", "deprecated_site_local"),
+            ("4000::1", "reserved"),
+        ] {
+            let address = text.parse::<Ipv6Addr>().unwrap();
+            assert_eq!(classify_ip(IpAddr::V6(address)), expected, "{text}");
+            assert!(!is_ip_permitted(IpAddr::V6(address), false), "{text}");
+            assert!(is_ip_permitted(IpAddr::V6(address), true), "{text}");
+        }
+    }
+
+    #[test]
+    fn permits_globally_reachable_ipv6_ranges() {
+        for text in [
+            "64:ff9b::808:808",
+            "2001:1::1",
+            "2001:3::1",
+            "2001:4:112::1",
+            "2001:20::1",
+            "2001:30::1",
+            "2001:4860:4860::8888",
+            "2606:4700:4700::1111",
+        ] {
+            let address = text.parse::<Ipv6Addr>().unwrap();
+            assert_eq!(classify_ip(IpAddr::V6(address)), "public", "{text}");
+            assert!(is_ip_permitted(IpAddr::V6(address), false), "{text}");
+        }
     }
 
     #[test]
