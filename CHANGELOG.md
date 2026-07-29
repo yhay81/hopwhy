@@ -9,6 +9,8 @@ CLI and machine-contract compatibility.
 
 - Added platform-specific, checksum- and provenance-verified native
   installation, update, and removal guidance.
+- Added weekly installation smoke tests on Linux x86_64, macOS Apple Silicon
+  and Intel, and Windows x86_64 using the published instructions.
 
 ## [0.3.0] - 2026-07-29
 
