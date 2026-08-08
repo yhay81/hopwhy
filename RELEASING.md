@@ -45,20 +45,23 @@ successful-run URL for every required track on every date.
 4. Dogfood the release binary against deterministic local success, failure,
    redirect, truncation, private-policy, integrity, compare, and replay cases.
    Confirm dry-run/compare/replay make no network connection.
-5. Confirm Linux, macOS, Windows, Rust 1.85, RustSec, schemas, documentation
+5. Review the current IANA IPv6 Special-Purpose Address Space registry against
+   the dated snapshot in `src/policy.rs`. Update the classifier and table-driven
+   policy tests before release when reachability assignments changed.
+6. Confirm Linux, macOS, Windows, Rust 1.85, RustSec, schemas, documentation
    links, package contents, and repeated fixture cases in hosted CI.
-6. Create and push a signed annotated tag:
+7. Create and push a signed annotated tag:
 
    ```bash
    git tag -s v0.3.0 -m "HopWhy 0.3.0"
    git push origin v0.3.0
    ```
 
-7. The release workflow creates four native archives, completions, a CycloneDX
+8. The release workflow creates four native archives, completions, a CycloneDX
    SBOM, `SHA256SUMS`, a GitHub release, and GitHub/Sigstore build-provenance
    and SBOM attestations. Each archive includes a downloadable
    `.intoto.jsonl` provenance bundle for local verification.
-8. Download all assets into a clean directory. Verify checksums and both
+9. Download all assets into a clean directory. Verify checksums and both
    attestation predicates:
 
    ```bash
@@ -74,9 +77,9 @@ successful-run URL for every required track on every date.
      --predicate-type https://cyclonedx.org/bom
    ```
 
-9. Inspect every archive layout. On each native platform run `--version`,
+10. Inspect every archive layout. On each native platform run `--version`,
    completion generation, brief schema emission, and a local fixture lifecycle.
-10. Release notes must link installation, checksums, SBOM/provenance
+11. Release notes must link installation, checksums, SBOM/provenance
     verification, changelog, platform guarantees, safety limits, and private
     security reporting.
 

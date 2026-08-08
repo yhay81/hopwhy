@@ -193,6 +193,31 @@ fn non_public_targets_are_denied_by_default_after_resolution() {
 }
 
 #[test]
+fn iana_non_global_ipv6_targets_are_denied_before_connection() {
+    for (target, expected_classification) in [
+        ("http://[64:ff9b:1::a00:1]:9/", "local_translation"),
+        ("http://[100::1]:9/", "discard_only"),
+        ("http://[2001:2::1]:9/", "benchmark"),
+        ("http://[3fff::1]:9/", "documentation"),
+        ("http://[5f00::1]:9/", "special_use"),
+        ("http://[4000::1]:9/", "reserved"),
+    ] {
+        let result = json_output(&["--format", "json", "inspect", target, "--disable-proxy"]);
+        assert_eq!(result["failed_at"], "dns", "{target}");
+        assert_eq!(
+            result["phases"][2]["error"]["code"], "non_public_address_denied",
+            "{target}"
+        );
+        assert_eq!(
+            result["addresses"][0]["classification"], expected_classification,
+            "{target}"
+        );
+        assert_eq!(result["addresses"][0]["permitted"], false, "{target}");
+        assert_eq!(result["usage"]["probes_used"], 1, "{target}");
+    }
+}
+
+#[test]
 fn local_fixture_report_replays_offline_with_integrity() {
     let _network_guard = network_guard();
     let server = fixture(vec![(
@@ -397,6 +422,32 @@ fn proxy_credentials_and_derived_hashes_are_never_emitted() {
     assert!(!rendered.contains("secret"));
     assert!(!rendered.contains(&raw_configuration_sha256));
     assert_eq!(report["failed_at"], "dns");
+}
+
+#[test]
+fn local_translation_proxy_is_denied_before_connection() {
+    let raw_proxy = "http://[64:ff9b:1::a00:1]:9/";
+    let output = command()
+        .env("http_proxy", raw_proxy)
+        .args(["--format", "json", "inspect", "http://example.com/"])
+        .assert()
+        .success()
+        .get_output()
+        .clone();
+    let report: Value = serde_json::from_slice(&output.stdout).unwrap();
+
+    assert_eq!(report["proxy"]["selected"], true);
+    assert_eq!(report["proxy"]["endpoint"], raw_proxy);
+    assert_eq!(report["failed_at"], "dns");
+    assert_eq!(
+        report["phases"][2]["error"]["code"],
+        "non_public_address_denied"
+    );
+    assert_eq!(
+        report["addresses"][0]["classification"],
+        "local_translation"
+    );
+    assert_eq!(report["usage"]["probes_used"], 1);
 }
 
 #[test]

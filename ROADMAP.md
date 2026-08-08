@@ -13,6 +13,8 @@ The roadmap is capability- and evidence-driven, not a date promise.
 ## 0.2 — stronger environment comparison
 
 - [x] Publish a digest-pinned v0.1 report compatibility and mutation corpus.
+- [x] Deny IANA non-global and reserved IPv6 special-purpose prefixes before
+  connecting to an initial target, proxy, or redirect.
 - explicit IPv4/IPv6 selection experiments;
 - native trust-store capability alongside the public-root baseline;
 - richer proxy CONNECT evidence;

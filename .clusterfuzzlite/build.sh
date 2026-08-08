@@ -10,5 +10,5 @@ for source in fuzz/fuzz_targets/*.rs; do
 done
 
 zip -q -j "$OUT/target_and_report_seed_corpus.zip" \
-    fuzz/seeds/target.txt \
+    fuzz/seeds/*.txt \
     tests/fixtures/contracts/v0.1/dns-failure.report.json
