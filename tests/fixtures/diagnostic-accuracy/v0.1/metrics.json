@@ -1,0 +1,81 @@
+{
+  "by_category": {
+    "dns_failure": {
+      "cases": 10,
+      "definitive_root_cause_claims": 0,
+      "hypothesis_code_matches": 10,
+      "phase_matches": 10,
+      "short_circuit_matches": 10,
+      "unobservable_cause_cases": 8
+    },
+    "http_failure": {
+      "cases": 10,
+      "definitive_root_cause_claims": 0,
+      "hypothesis_code_matches": 10,
+      "phase_matches": 10,
+      "short_circuit_matches": 10,
+      "unobservable_cause_cases": 10
+    },
+    "redirect_failure": {
+      "cases": 10,
+      "definitive_root_cause_claims": 0,
+      "hypothesis_code_matches": 10,
+      "phase_matches": 10,
+      "short_circuit_matches": 10,
+      "unobservable_cause_cases": 0
+    },
+    "response_observed": {
+      "cases": 10,
+      "definitive_root_cause_claims": 0,
+      "hypothesis_code_matches": 10,
+      "phase_matches": 10,
+      "short_circuit_matches": 10,
+      "unobservable_cause_cases": 0
+    },
+    "tcp_failure": {
+      "cases": 10,
+      "definitive_root_cause_claims": 0,
+      "hypothesis_code_matches": 10,
+      "phase_matches": 10,
+      "short_circuit_matches": 10,
+      "unobservable_cause_cases": 10
+    },
+    "tls_failure": {
+      "cases": 10,
+      "definitive_root_cause_claims": 0,
+      "hypothesis_code_matches": 10,
+      "phase_matches": 10,
+      "short_circuit_matches": 10,
+      "unobservable_cause_cases": 10
+    }
+  },
+  "corpus_sha256": "0da84b1810e8ccf6f2cc349c537e1a0228731fa17cbbacbeb080420187dd2cc6",
+  "definitive_root_cause_claims": 0,
+  "hypothesis_code_matches": 60,
+  "phase_accuracy": 1.0,
+  "phase_confusion": {
+    "dns": {
+      "dns": 10
+    },
+    "http": {
+      "http": 10
+    },
+    "redirects": {
+      "redirects": 10
+    },
+    "success": {
+      "success": 10
+    },
+    "tcp": {
+      "tcp": 10
+    },
+    "tls": {
+      "tls": 10
+    }
+  },
+  "phase_matches": 60,
+  "schema_version": "hopwhy.diagnostic-accuracy-metrics.v1",
+  "short_circuit_matches": 60,
+  "total_cases": 60,
+  "unobservable_cause_cases": 38
+}
