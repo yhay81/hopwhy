@@ -13,6 +13,8 @@ CLI and machine-contract compatibility.
   and Intel, and Windows x86_64 using the published instructions.
 - Enforced the published v1.0 live-diagnostic, offline-operation, and bounded
   memory thresholds from 20-sample benchmark evidence on Ubuntu 24.04.
+- Published a deterministic 60-scenario diagnostic-accuracy corpus with
+  earliest-phase, short-circuit, hypothesis, and false-cause scoring.
 
 ### Fixed
 
