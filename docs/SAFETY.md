@@ -10,11 +10,18 @@ The default address policy denies:
 - loopback and unspecified addresses;
 - RFC 1918 private IPv4 and unique-local IPv6;
 - link-local, shared, multicast, broadcast, documentation, benchmark, and
-  reserved ranges.
+  reserved ranges;
+- IANA non-global IPv6 special-purpose ranges, including local-use
+  IPv4/IPv6 translation, discard-only, dummy, and transition prefixes.
 
 `--allow-private` authorizes all of those categories for the current command.
 Use it only after the user or controlling policy has selected the target. Never
 add it automatically merely because a target failed.
+
+The checked-in IPv6 policy follows the dated IANA special-purpose registry
+snapshot referenced in `src/policy.rs`. Prefixes whose global reachability is
+false or unspecified fail closed. Maintainers review the snapshot before each
+release; HopWhy never downloads policy data while inspecting a target.
 
 URL user information is rejected. Only HTTP(S) schemes are accepted.
 

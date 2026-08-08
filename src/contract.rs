@@ -13,8 +13,7 @@ pub fn capabilities() -> Capabilities {
         supported_schemes: vec!["http".to_owned(), "https".to_owned()],
         supported_platforms: vec!["linux".to_owned(), "macos".to_owned(), "windows".to_owned()],
         default_private_address_policy:
-            "deny loopback, private, link-local, multicast, documentation, and reserved addresses"
-                .to_owned(),
+            "deny loopback, private, link-local, multicast, documentation, reserved, and IANA non-global special-purpose addresses".to_owned(),
         capabilities: vec![
             capability(
                 PhaseName::Input,

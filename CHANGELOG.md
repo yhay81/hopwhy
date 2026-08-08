@@ -18,6 +18,10 @@ CLI and machine-contract compatibility.
 
 ### Fixed
 
+- Denied IANA non-global, local-translation, discard-only, benchmark,
+  documentation, transition, and reserved IPv6 ranges before connecting to an
+  initial target or proxy. IPv4 addresses embedded in the well-known
+  translation prefix now inherit the IPv4 safety classification.
 - Stopped hashing raw proxy environment values; configuration fingerprints now
   cover only the credential-free, query-redacted canonical endpoint.
 - Rejected performance evidence with a non-canonical commit identity,
