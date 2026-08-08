@@ -24,6 +24,14 @@ Windows. This catches platform differences in accepted-socket modes, process
 execution, and bounded redirect handling. Public-network access is never
 required for a merge.
 
+The [diagnostic accuracy
+corpus](../tests/fixtures/diagnostic-accuracy/README.md) adds 60 network-free
+fault-injection scenarios. Only network I/O is scripted; each case passes
+through the production `inspect` phase orchestration, report finalization, and
+hypothesis generation. The checked-in metrics include a phase confusion matrix,
+short-circuit agreement, hypothesis-code agreement, and definitive hidden-cause
+claim count.
+
 ## Corpus acceptance
 
 A new diagnosis case should define:

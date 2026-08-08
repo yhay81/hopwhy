@@ -76,6 +76,13 @@ decision.
   are resolved.
 - No known critical or high-severity vulnerability is open at release time.
 
+Current diagnostic evidence publishes 60 deterministic labeled scenarios,
+with ten each for DNS, TCP, TLS, HTTP, redirect, and observed-response
+outcomes. The independent scorer exercises the production phase orchestration
+and currently requires 100% earliest-phase accuracy, 100% short-circuit and
+hypothesis-code agreement, and zero definitive claims across 38 scenarios with
+unobservable hidden causes.
+
 ### Performance and bounds
 
 - Default live diagnostics complete within the declared 15-second budget and

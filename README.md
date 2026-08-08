@@ -23,6 +23,11 @@ The repository publishes a digest-pinned
 compatibility testing, including ten declared schema, type, enum, payload, and
 integrity mutations that the current reader rejects.
 
+The versioned [diagnostic accuracy
+corpus](tests/fixtures/diagnostic-accuracy/README.md) publishes 60 labeled
+DNS-to-HTTP scenarios. CI scores the production phase orchestration at 100%
+earliest-failure accuracy and requires zero definitive claims for hidden causes.
+
 The versioned [performance harness](benchmarks/README.md) publishes raw
 loopback redirect/body-pressure and network-free compare, replay, integrity,
 and schema baselines without turning one noisy hosted-runner sample into a
